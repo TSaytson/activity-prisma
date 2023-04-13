@@ -1,0 +1,10 @@
+# Compiled binary addons 
+build/Release
+dist
+
+# Dependency directories
+
+node_modules/
+
+# dotenv environment variables file
+.env
