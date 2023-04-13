@@ -5,7 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "prisma:seed": "pnpm dlx prisma db seed"
+  },
+  "prisma": {
+    "seed" : "ts-node prisma/seed.prisma.ts"
   },
   "keywords": [],
   "author": "",

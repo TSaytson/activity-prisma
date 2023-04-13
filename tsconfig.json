@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "module": "es6",
+    "module": "ES2022",
     "esModuleInterop": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "target": "es2017"
   },
   "ts-node": {
+    "swc": true,
     "esm": true
   }
 }
