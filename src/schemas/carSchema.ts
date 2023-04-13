@@ -1,8 +1,10 @@
-import joi from "joi";
+import z from 'zod';
 
-export const carSchema = joi.object({
-  model: joi.string().required(),
-  licensePlate: joi.string().length(7).required(),
-  year: joi.number().required(),
-  color: joi.string().required()
+export const carSchema = z.object({
+  model: z.string(),
+  licensePlate: z.string().length(7),
+  year: z.number(),
+  color: z.string()
 });
+
+export type Car = z.infer<typeof carSchema>

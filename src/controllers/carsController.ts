@@ -2,6 +2,7 @@ import httpStatus from "http-status";
 
 import { Request, Response } from "express";
 import carService from "../services/carService.js";
+import { Car } from "../schemas/carSchema.js";
 
 async function getAllCars(req: Request, res: Response) {
   try {
@@ -17,7 +18,7 @@ async function getSpecificCar(req: Request, res: Response) {
   const carId = parseInt(req.params.carId);
   try {
     const car = await carService.getCar(carId);
-    res.send(car);
+    return res.send(car);
   } catch (e) {
     if (e.name === "NotFoundError") {
       return res.sendStatus(httpStatus.NOT_FOUND);
@@ -26,7 +27,7 @@ async function getSpecificCar(req: Request, res: Response) {
 }
 
 async function createCar(req: Request, res: Response) {
-  const { model, licensePlate, year, color } = req.body;
+  const { model, licensePlate, year, color } = req.body as Car;
 
   try {
     await carService.createCar(model, licensePlate, year, color)
@@ -46,7 +47,7 @@ async function deleteCar(req: Request, res: Response) {
 
   try {
     await carService.deleteCar(carId);
-    res.send(httpStatus.OK);
+    return res.sendStatus(httpStatus.OK);
   } catch (e) {
     console.log(e);
     if (e.name === "NotFoundError") {
